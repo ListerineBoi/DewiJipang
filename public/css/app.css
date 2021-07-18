@@ -54,19 +54,25 @@
 }
 .bamboo{
   background-image: url("/img/bamboo.jpg");
-  background-position: -200px 500px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .kipas{
   background-image: url("/img/kipas.jpg");
-  background-position: -200px 700px;
+  background-position: 0px -600px;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .cal{
   background-image: url("/img/images.jpg");
-  background-position: -100px 600px;
+  background-position: 0px -220px;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .kayu{
   background-image: url("/img/imagess.jpg");
-  background-position: -100px 900px;
+  background-position: -100px 910px;
 }
 
 .custitle{

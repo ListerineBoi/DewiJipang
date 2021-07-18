@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="col-12 kayu py-5  ">
-    <h1 class="section-heading text-center display-4 finger font-weight-bolder">{{DB::table('umkm_detail')->where('id_umkm', $id1)->value('nama')}}</h1>
+    <h1 class="section-heading text-white text-center display-4 finger font-weight-bolder">{{DB::table('umkm_detail')->where('id_umkm', $id1)->value('nama')}}</h1>
 </div>
 
 <div class="row justify-content-center ">
