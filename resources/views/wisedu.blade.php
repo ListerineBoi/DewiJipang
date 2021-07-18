@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div class="col-12 my-5 text-right">
-            <a href="{{route('paket')}}" role="button" class="btn btn-primary btn-lg">Paket Wisata</a>
+            <a href="{{route('paket')}}" role="button" class="btn btn-primary btn-block btn-lg"><h1>Paket Wisata <i class="bi bi-arrow-right-short"></i></h1> </a>
             </div>
         </div>
     </div>

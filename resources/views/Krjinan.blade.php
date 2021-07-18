@@ -57,7 +57,7 @@ Saat ini telah berdiri sebuah kelompok pengrajin kipas dari Jipangan dengan nama
                 </div>
             </div>
             <div class="col-12 my-5 text-right">
-            <a href="{{route('umkm')}}" role="button" class="btn btn-primary btn-lg">Daftar UMKM</a>
+            <a href="{{route('umkm')}}" role="button" class="btn btn-primary btn-block btn-lg"><h1>Daftar Penjual Kerajinan<i class="bi bi-arrow-right-short"></i></h1> </a>
             </div>
         </div>
     </div>

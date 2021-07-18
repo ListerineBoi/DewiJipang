@@ -85,7 +85,7 @@
             <div class="container col-sm-4 py-5 mt-5">
                 <h5 class="mt-5 pt-5" style="color:black">Pemesanan:</h5>
                 <a href="https://wa.me/{{DB::table('wisata_detail')->where('id_wisata', $wisata[0]->id_wisata)->value('whatsapp')}}" role="button" class="btn btn-success btn-lg mb-2">
-                <img src="/img/whatsapp.png" width="60rem" height="60rem" class="rounded" alt="..."> Whatsapp
+                <h1><i class="bi bi-whatsapp "></i> <h4>Whatsapp</h4></h1> 
                 </a>
             </div>
         </div>
