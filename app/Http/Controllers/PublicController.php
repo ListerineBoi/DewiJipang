@@ -9,6 +9,9 @@ use App\Models\Katalog;
 use App\Models\WisataDetail;
 use App\Models\Wisata;
 use App\Models\Jadwal;
+use App\Models\HomestayDetail;
+use App\Models\JadwalH;
+use App\Models\Homestay;
 use App\Models\linkwisata;
 class PublicController extends Controller
 {
@@ -38,6 +41,17 @@ class PublicController extends Controller
     {
         $umkm=UMKM::all();
         return view('umkm',compact('umkm'));
+    }
+    public function hmsty()
+    {
+        $homestay=Homestay::all();
+        return view('homestay',compact('homestay'));
+    }
+    public function Dhmsty($id)
+    {
+        $jadwal=JadwalH::where('id_hmsty','=',$id)->get();
+        $home=HomestayDetail::where('id_hmsty','=',$id)->get();
+        return view('Dhomestay',compact('home','jadwal'));
     }
     public function toko($id)
     {

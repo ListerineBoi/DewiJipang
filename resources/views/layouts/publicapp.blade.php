@@ -56,7 +56,7 @@
                                     <a class="nvbarlink" href="{{route('krjn')}}">
                                        <h5>Kerajinan</h5> 
                                     </a>
-                                    <a class="nvbarlink" href="">
+                                    <a class="nvbarlink" href="{{route('hmsty')}}">
                                        <h5>Home Stay</h5> 
                                     </a>
                                 </div>

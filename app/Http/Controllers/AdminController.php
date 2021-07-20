@@ -8,6 +8,8 @@ use App\Models\UMKM;
 use App\Models\Katalog;
 use App\Models\WisataDetail;
 use App\Models\Wisata;
+use App\Models\Homestay;
+use App\Models\HomestayDetail;
 use App\Models\linkD;
 use App\Models\linkwisata;
 use Illuminate\Support\Facades\Storage;
@@ -393,5 +395,110 @@ class AdminController extends Controller
         return redirect()->route('Ilink',['id' => $request->idumkm])->with('success','Data deleted');
     }
 
+    //////////////
+    public function Ihmsty()
+    {
+        $hmsty=Homestay::all();
+        return view('Inputhmsty',compact('hmsty'));
+    
+    }
+    public function inputH(Request $request)
+    {
+        $this->validate($request, [
+            'nama' => 'required',
+            'pemilik' => 'required',
+            'alamat' => 'required',
+            'kapasitas' => 'required',
+            'desk' => 'required',
+            'whatsapp' => 'required',
+            'img' => 'required'      
+        ]);
+            $fullname = $request->file('img')->getClientOriginalName();
+           
+            $extn =$request->file('img')->getClientOriginalExtension();
+            $final= $request->nama.'_'.time().'.'.$extn;
+
+            $path = $request->file('img')->storeAs('public/homestay', $final);
+
+        $Homestay= new Homestay;
+        $Homestay->save();
+        $idW=Homestay::orderBy('id', 'desc')->value('id');
+        $HomestayDetail= new HomestayDetail([
+            'id_hmsty' => $idW,
+            'nama' => $request->nama,
+            'pemilik' => $request->pemilik,
+            'alamat' => $request->alamat,
+            'kapasitas' => $request->kapasitas,
+            'jam' => $request->jam,
+            'desk' => $request->desk,
+            'whatsapp' => $request->whatsapp,
+            'img' => $final
+            
+        ]);
+        $HomestayDetail->save();
+        return redirect()->route('Ihmsty')->with('success','Data Added');
+       
+    }
+    public function deleteH(Request $request)
+    {
+        $img=HomestayDetail::where('id_hmsty', $request->get('id'))->value('img');
+        $path='public/homestay/'.$img;
+        Storage::delete($path);
+        HomestayDetail::where('id_hmsty', $request->get('id'))->delete();
+        Homestay::where('id', $request->get('id'))->delete();
+        return redirect()->route('Ihmsty')->with('success','Data deleted');
+    }
+    public function editH(Request $request)
+    {
+        $detail=HomestayDetail::where('id_hmsty','=',$request->get('id'))->get();
+        return view('edithmsty',compact('detail'));
+        
+    }
+    public function updateH(Request $request)
+    {
+        $this->validate($request, [
+            'nama' => 'required',
+            'pemilik' => 'required',
+            'alamat' => 'required',
+            'kapasitas' => 'required',
+            'desk' => 'required',
+            'whatsapp' => 'required',
+               
+        ]);
+        if($request->file('img')!=null){
+            $img=HomestayDetail::where('id_hmsty', $request->get('id'))->value('img');
+            $path='public/homestay/'.$img;
+            Storage::delete($path);
+            $fullname = $request->file('img')->getClientOriginalName();
+           
+            $extn =$request->file('img')->getClientOriginalExtension();
+            $final= $request->nama.'_'.time().'.'.$extn;
+
+            $path = $request->file('img')->storeAs('public/homestay', $final);
+        $update=[
+         
+            'nama' => $request->nama,
+            'pemilik' => $request->pemilik,
+            'alamat' => $request->alamat,
+            'kapasitas' => $request->kapasitas,
+            'desk' => $request->desk,
+            'whatsapp' => $request->whatsapp,
+            'img' => $final
+        ];
+        }else{
+            $update=[
+            
+                'nama' => $request->nama,
+                'pemilik' => $request->pemilik,
+                'alamat' => $request->alamat,
+                'kapasitas' => $request->kapasitas,
+                'desk' => $request->desk,
+                'whatsapp' => $request->whatsapp,
+            ];
+        }
+        HomestayDetail::where('id_hmsty', $request->get('id'))->update($update);
+        return redirect()->route('Ihmsty')->with('success','Data Edited');
+       
+    }
     
 }

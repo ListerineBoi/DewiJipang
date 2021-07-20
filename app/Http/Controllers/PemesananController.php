@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\WisataDetail;
 use App\Models\Wisata;
 use App\Models\Jadwal;
+use App\Models\JadwalH;
+use App\Models\Homestay;
+use App\Models\HomestayDetail;
 
 class PemesananController extends Controller
 {
@@ -17,7 +20,8 @@ class PemesananController extends Controller
     public function paketlist()
     {
         $wisata=Wisata::all();
-        return view('pesanwisatalist',compact('wisata'));
+        $homestay=Homestay::all();
+        return view('pesanwisatalist',compact('wisata','homestay'));
 
     }
     
@@ -26,6 +30,13 @@ class PemesananController extends Controller
         $wisata=WisataDetail::where('id_wisata','=',$id)->get();
         $jadwal=Jadwal::where('id_wisata','=',$id)->get();
         return view('penjadwalan',compact('wisata','jadwal'));
+        //return $jadwal;
+    }
+    public function indexH($id)
+    {
+        $homestay=HomestayDetail::where('id_hmsty','=',$id)->get();
+        $jadwal=JadwalH::where('id_hmsty','=',$id)->get();
+        return view('penjadwalanH',compact('homestay','jadwal'));
         //return $jadwal;
     }
     public function inputJ(Request $request)
@@ -52,5 +63,31 @@ class PemesananController extends Controller
         ]);
         Jadwal::where('id_wisata', $request->get('id')) ->where('start', $request->get('start'))->delete();
         return redirect()->route('penjadwalan',['id' => $request->id])->with('success','Data deleted');
+    }
+
+    public function inputJH(Request $request)
+    {
+       
+        $this->validate($request, [
+            'start' => 'required',
+            'title' => 'required'    
+        ]);
+        $Jadwal= new JadwalH([
+            'id_hmsty'=> $request->id,
+            'start' => $request->start,
+            'title' => $request->title
+            
+        ]);
+        $Jadwal->save();
+        return redirect()->route('penjadwalanH',['id' => $request->id])->with('success','Data Added');
+
+    }
+    public function deleteJH(Request $request)
+    {
+        $this->validate($request, [
+            'start' => 'required'  
+        ]);
+        JadwalH::where('id_hmsty', $request->get('id')) ->where('start', $request->get('start'))->delete();
+        return redirect()->route('penjadwalanH',['id' => $request->id])->with('success','Data deleted');
     }
 }

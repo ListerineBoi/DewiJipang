@@ -34,12 +34,29 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nvbarlink" href="{{route('Iumkm')}}"><h3>Edit UMKM</h3></a>
+                            
+
+                            <li class="nav-item dropdown">
+                                <h3>
+                                <a id="navbarDropdown" class="nvbarlink dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Edit
+                                </a>
+                               
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="nvbarlink" href="{{route('Iwisata')}}">
+                                       <h5>Wisata Edukasi</h5> 
+                                    </a>
+                                    <a class="nvbarlink" href="{{route('Iumkm')}}">
+                                       <h5>Kerajinan</h5> 
+                                    </a>
+                                    <a class="nvbarlink" href="{{route('Ihmsty')}}">
+                                       <h5>Home Stay</h5> 
+                                    </a>
+                                </div>
+                                
+                                </h3>
                             </li>
-                            <li class="nav-item">
-                                <a class="nvbarlink" href="{{route('Iwisata')}}"><h3>Edit Wisata Edukasi</h3></a>
-                            </li>
+
                             <li class="nav-item">
                                 <a class="nvbarlink" href="{{route('paketlist')}}"><h3>Penjadwalan</h3></a>
                             </li>
@@ -47,6 +64,7 @@
                                 <a class="nvbarlink" href="{{route('linkadd')}}"><h3>Template link</h3></a>
                             </li>
                     </ul>
+                    
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

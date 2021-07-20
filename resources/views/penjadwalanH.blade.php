@@ -11,20 +11,19 @@
         <div class="card my-3" >
             <div class="row g-0">
                     <div class="col-sm-2 m-3 ml-4">
-                        <h5 class="card-title">{{DB::table('wisata_detail')->where('id_wisata', $wisata[0]->id_wisata)->value('nama')}}</h5>
-                        <img src="/storage/wisata/{{DB::table('wisata_detail')->where('id_wisata', $wisata[0]->id_wisata)->value('img')}}" class="imgpaket rounded" alt="...">
+                        <h5 class="card-title">{{DB::table('homestay_detail')->where('id_hmsty', $homestay[0]->id_hmsty)->value('nama')}}</h5>
+                        <img src="/storage/homestay/{{DB::table('homestay_detail')->where('id_hmsty', $homestay[0]->id_hmsty)->value('img')}}" class="imgpaket rounded" alt="...">
                     </div>
                     <div class="col-sm-4">
                         <div class="card-body">
-                        <h5 class="card-title mt-4">Harga :{{DB::table('wisata_detail')->where('id_wisata', $wisata[0]->id_wisata)->value('harga')}}</h5>
-                        <h5 class="card-title ">Durasi :{{DB::table('wisata_detail')->where('id_wisata', $wisata[0]->id_wisata)->value('durasi')}}</h5>
-                        <h5 class="card-title ">Penanggung Jawab :{{DB::table('wisata_detail')->where('id_wisata', $wisata[0]->id_wisata)->value('p_jawab')}}</h5>
-                        <h5 class="card-title ">Lokasi :{{DB::table('wisata_detail')->where('id_wisata', $wisata[0]->id_wisata)->value('lokasi')}}</h5>
+                        <h5 class="card-title mt-4">Kapasitas :{{DB::table('homestay_detail')->where('id_hmsty', $homestay[0]->id_hmsty)->value('kapasitas')}}</h5>
+                        <h5 class="card-title ">Pemilik :{{DB::table('homestay_detail')->where('id_hmsty', $homestay[0]->id_hmsty)->value('pemilik')}}</h5>
+                        <h5 class="card-title ">Alamat :{{DB::table('homestay_detail')->where('id_hmsty', $homestay[0]->id_hmsty)->value('alamat')}}</h5>
                         </div>
                     </div>
                     <div class="col-5 mt-5">
                     <h5 class="card-title ">Deskripsi</h5>
-                    <p style="color:black">{{DB::table('wisata_detail')->where('id_wisata', $wisata[0]->id_wisata)->value('desk')}}</p>
+                    <p style="color:black">{{DB::table('homestay_detail')->where('id_hmsty', $homestay[0]->id_hmsty)->value('desk')}}</p>
                     </div>
             </div>
             
@@ -115,11 +114,11 @@
                         </div>
                     @endif
 
-                    <form method="post" action="{{route('inputJ')}}" enctype='multipart/form-data'>
+                    <form method="post" action="{{route('inputJH')}}" enctype='multipart/form-data'>
                     <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
 
                         
-                            <input type="hidden" class="form-control" name="id" value="{{$wisata[0]->id_wisata}}"> 
+                            <input type="hidden" class="form-control" name="id" value="{{$homestay[0]->id_hmsty}}"> 
                             <div class="form-group">
                                 <label for="formGroupExampleInput">Title</label>
                                 <input type="text" class="form-control" name="title"> 
@@ -143,11 +142,11 @@
                 <div class="card-body">
                     
 
-                    <form method="post" action="{{route('deleteJ')}}" enctype='multipart/form-data'>
+                    <form method="post" action="{{route('deleteJH')}}" enctype='multipart/form-data'>
                     <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
 
                         
-                            <input type="hidden" class="form-control" name="id" value="{{$wisata[0]->id_wisata}}"> 
+                            <input type="hidden" class="form-control" name="id" value="{{$homestay[0]->id_hmsty}}"> 
                             
                             <div class="form-group">
                                 <label for="formGroupExampleInput">Tanggal</label>

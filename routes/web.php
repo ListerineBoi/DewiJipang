@@ -26,6 +26,8 @@ Route::get('/wisata-edukasi', [App\Http\Controllers\PublicController::class, 'wi
 Route::get('/paket-wisata', [App\Http\Controllers\PublicController::class, 'paket'])->name('paket');
 Route::get('/Kerajinan', [App\Http\Controllers\PublicController::class, 'krjn'])->name('krjn');
 Route::get('/Kerajinan-UMKM', [App\Http\Controllers\PublicController::class, 'umkm'])->name('umkm');
+Route::get('/Homestay', [App\Http\Controllers\PublicController::class, 'hmsty'])->name('hmsty');
+Route::get('/Homestay/pemesanan/{id}', [App\Http\Controllers\PublicController::class, 'Dhmsty'])->name('Dhmsty');
 Route::get('/Kerajinan-UMKM/detail/{id}', [App\Http\Controllers\PublicController::class, 'toko'])->name('toko');
 Route::get('/paket-wisata/pemesanan/{id}', [App\Http\Controllers\PublicController::class, 'index'])->name('pemesanan');
 Route::get('/paket-wisata/cal', [App\Http\Controllers\PemesananController::class, 'cal'])->name('cal');
@@ -58,7 +60,16 @@ Route::post('/wisata/delete', [App\Http\Controllers\AdminController::class, 'del
 Route::post('/wisata/edit', [App\Http\Controllers\AdminController::class, 'editW'])->name('editW');
 Route::post('/wisata/update', [App\Http\Controllers\AdminController::class, 'updateW'])->name('updateW');
 
+Route::get('/homestay', [App\Http\Controllers\AdminController::class, 'Ihmsty'])->name('Ihmsty');
+Route::post('/homestay/input', [App\Http\Controllers\AdminController::class, 'inputH'])->name('inputH');
+Route::post('/homestay/delete', [App\Http\Controllers\AdminController::class, 'deleteH'])->name('deleteH');
+Route::post('/homestay/edit', [App\Http\Controllers\AdminController::class, 'editH'])->name('editH');
+Route::post('/homestay/update', [App\Http\Controllers\AdminController::class, 'updateH'])->name('updateH');
+
 Route::get('/paketlist', [App\Http\Controllers\PemesananController::class, 'paketlist'])->name('paketlist');
 Route::get('/paketlist/penjadwalan/{id}', [App\Http\Controllers\PemesananController::class, 'index'])->name('penjadwalan');
+Route::get('/paketlist/penjadwalanH/{id}', [App\Http\Controllers\PemesananController::class, 'indexH'])->name('penjadwalanH');
 Route::post('/paketlist/penjadwalan/input', [App\Http\Controllers\PemesananController::class, 'inputJ'])->name('inputJ');
 Route::post('/paketlist/penjadwalan/delete', [App\Http\Controllers\PemesananController::class, 'deleteJ'])->name('deleteJ');
+Route::post('/paketlist/penjadwalanH/input', [App\Http\Controllers\PemesananController::class, 'inputJH'])->name('inputJH');
+Route::post('/paketlist/penjadwalanH/delete', [App\Http\Controllers\PemesananController::class, 'deleteJH'])->name('deleteJH');
