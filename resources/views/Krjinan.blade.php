@@ -19,32 +19,21 @@ Saat ini telah berdiri sebuah kelompok pengrajin kipas dari Jipangan dengan nama
             <div class="bd-example">
                 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                    @foreach($car as $row)
+                    <li data-target="#carouselExampleCaptions" data-slide-to="{{$loop->iteration}}" class="@if($loop->iteration==1)active @endif"></li>
+                    @endforeach
                     </ol>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                        <img src="/img/Photo0525[1].jpg" class="d-block w-100 " alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                        </div>
-                    </div>
-                        <div class="carousel-item">
-                        <img src="/img/index.jpg" class="d-block w-100 " alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                        <div class="carousel-item">
-                            <img src="/img/imagess.jpg" class="d-block w-100 " alt="...">
+                    @foreach($car as $row)
+                        <div class="carousel-item @if($loop->iteration==1)active @endif">
+                            <img src="/storage/carousel/{{$row['img']}}" class="d-block w-100 " alt="...">
                             <div class="carousel-caption d-none d-md-block">
-                            <h5>Third slide label</h5>
-                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            <h5>{{$row['title']}}</h5>
+                            <p>{{$row['desk']}}</p>
                             </div>
                         </div>
+                    @endforeach
+                        
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

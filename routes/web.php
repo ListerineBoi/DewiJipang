@@ -73,3 +73,10 @@ Route::post('/paketlist/penjadwalan/input', [App\Http\Controllers\PemesananContr
 Route::post('/paketlist/penjadwalan/delete', [App\Http\Controllers\PemesananController::class, 'deleteJ'])->name('deleteJ');
 Route::post('/paketlist/penjadwalanH/input', [App\Http\Controllers\PemesananController::class, 'inputJH'])->name('inputJH');
 Route::post('/paketlist/penjadwalanH/delete', [App\Http\Controllers\PemesananController::class, 'deleteJH'])->name('deleteJH');
+
+Route::get('/carousel_list', [App\Http\Controllers\AdminController::class, 'carlist'])->name('carlist');
+Route::get('/carousel_list/{type}/{id?}', [App\Http\Controllers\AdminController::class, 'inputcar'])->name('inputcar');
+Route::post('/carousel_list/save', [App\Http\Controllers\AdminController::class, 'savecar'])->name('savecar');
+Route::post('/carousel_list/delete', [App\Http\Controllers\AdminController::class, 'deletecar'])->name('deletecar');
+Route::post('/carousel_list/edit', [App\Http\Controllers\AdminController::class, 'editcar'])->name('editcar');
+Route::post('/carousel_list/update', [App\Http\Controllers\AdminController::class, 'updatecar'])->name('updatecar');

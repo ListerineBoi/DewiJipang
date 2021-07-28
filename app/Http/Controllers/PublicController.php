@@ -13,6 +13,7 @@ use App\Models\HomestayDetail;
 use App\Models\JadwalH;
 use App\Models\Homestay;
 use App\Models\linkwisata;
+use App\Models\Carousel;
 class PublicController extends Controller
 {
     public function home()
@@ -21,7 +22,8 @@ class PublicController extends Controller
     }
     public function wisedu()
     {
-        return view('wisedu');
+        $car=Carousel::where('type','=',2)->get();
+        return view('wisedu',compact('car'));
     }
     public function paket()
     {
@@ -31,7 +33,8 @@ class PublicController extends Controller
     }
     public function krjn()
     {
-        return view('Krjinan');
+        $car=Carousel::where('type','=',3)->get();
+        return view('Krjinan',compact('car'));
     }
     public function tentang()
     {
@@ -51,7 +54,8 @@ class PublicController extends Controller
     {
         $jadwal=JadwalH::where('id_hmsty','=',$id)->get();
         $home=HomestayDetail::where('id_hmsty','=',$id)->get();
-        return view('Dhomestay',compact('home','jadwal'));
+        $car=Carousel::where('id_hmsty','=',$id)->get();
+        return view('Dhomestay',compact('home','jadwal','car'));
     }
     public function toko($id)
     {

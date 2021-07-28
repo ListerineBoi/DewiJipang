@@ -13,6 +13,7 @@ use App\Models\HomestayDetail;
 use App\Models\linkD;
 use App\Models\linkwisata;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Carousel;
 
 class AdminController extends Controller
 {
@@ -500,5 +501,101 @@ class AdminController extends Controller
         return redirect()->route('Ihmsty')->with('success','Data Edited');
        
     }
-    
+    public function carlist()
+    {
+        $homestay=Homestay::all();
+        return view('carousellist',compact('homestay'));
+
+    }
+    public function inputcar($type,$id=null)
+    {
+        if($type==0){
+            $car=Carousel::where('id_hmsty','=',$id)->get();
+            
+        }else{
+            $car=Carousel::where('type','=',$type)->get();
+        }
+        return view('Inputcar',compact('car','id','type'));
+       
+    }
+    public function savecar(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'desk' => 'required',
+            'img' => 'required'      
+        ]);
+            $fullname = $request->file('img')->getClientOriginalName();
+           
+            $extn =$request->file('img')->getClientOriginalExtension();
+            $final= 'carousel'.'_'.time().'.'.$extn;
+
+            $path = $request->file('img')->storeAs('public/carousel', $final);
+
+        $Carousel= new Carousel([
+            'id_hmsty' => $request->id,
+            'type' => $request->type,
+            'title' => $request->title,
+            'desk' => $request->desk,
+            'img' => $final
+            
+        ]);
+        $Carousel->save();
+        return redirect()->route('inputcar',['id' => $request->id,'type'=> $request->type])->with('success','Data Added');
+       
+    }
+    public function deletecar(Request $request)
+    {
+        $img=Carousel::where('id', $request->get('id'))->value('img');
+        $path='public/carousel/'.$img;
+        Storage::delete($path);
+        Carousel::where('id', $request->get('id'))->delete();
+        return redirect()->route('inputcar',['id' => $request->id_hmsty,'type'=> $request->type])->with('success','Data deleted');
+    }
+    public function editcar(Request $request)
+    {
+        if($request->type==0){
+            $car=Carousel::where('id','=',$request->id)->get();
+            
+        }else{
+            $car=Carousel::where('type','=',$request->type)->where('id','=',$request->id)->get();
+        }
+       
+        return view('editcar',compact('car'));
+        
+        
+    }
+    public function updatecar(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'desk' => 'required' 
+               
+        ]);
+        if($request->file('img')!=null){
+            $img=Carousel::where('id', $request->get('id'))->value('img');
+            $path='public/carousel/'.$img;
+            Storage::delete($path);
+            $fullname = $request->file('img')->getClientOriginalName();
+           
+            $extn =$request->file('img')->getClientOriginalExtension();
+            $final= 'carousel'.'_'.time().'.'.$extn;
+
+            $path = $request->file('img')->storeAs('public/carousel', $final);
+        $update=[
+            'title' => $request->title,
+            'desk' => $request->desk,
+            'img' => $final
+        ];
+        }else{
+            $update=[
+  
+                'title' => $request->title,
+                'desk' => $request->desk
+            ];
+        }
+        Carousel::where('id', $request->get('id'))->update($update);
+        return redirect()->route('inputcar',['id' => $request->id_hmsty,'type'=> $request->type])->with('success','Data Edited');
+       
+    }
 }

@@ -30,6 +30,40 @@
         </div>
         
     </div>
+    <div class="col-sm-10">
+            
+            <div class="bd-example">
+                <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                    @foreach($car as $row)
+                    <li data-target="#carouselExampleCaptions" data-slide-to="{{$loop->iteration}}" class="@if($loop->iteration==1)active @endif"></li>
+                    @endforeach
+                    </ol>
+                    <div class="carousel-inner">
+                        @foreach($car as $row)
+                        <div class="carousel-item @if($loop->iteration==1)active @endif">
+                            <img src="/storage/carousel/{{$row['img']}}" class="d-block w-100 " alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5>{{$row['title']}}</h5>
+                            <p>{{$row['desk']}}</p>
+                            </div>
+                        </div>
+                        @endforeach
+                       
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="col-sm-11" >
     <div class="row">
     <div class="container col-sm-6 mx-2">

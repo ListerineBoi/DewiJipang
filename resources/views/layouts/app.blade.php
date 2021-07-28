@@ -63,6 +63,9 @@
                             <li class="nav-item">
                                 <a class="nvbarlink" href="{{route('linkadd')}}"><h3>Template link</h3></a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nvbarlink" href="{{route('carlist')}}"><h3>Edit Carousel</h3></a>
+                            </li>
                     </ul>
                     
 
